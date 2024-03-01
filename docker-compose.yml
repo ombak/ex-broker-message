@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  web:
+    depends_on:
+      - redis
+    build: .
+    volumes:
+      - ./:/var/www/app
+      - /var/www/app/node_modules
+    ports:
+      - ${SERVER_PORT}:3002
+    env_file:
+      - .env
+    restart: always
+    command: ["nodemon", "server.js"]
+  
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - redis-data:/root/redis
+    env_file:
+      - .env
+
+volumes:
+  redis-data: {}

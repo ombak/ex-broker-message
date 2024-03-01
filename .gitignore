@@ -1,0 +1,12 @@
+node_modules/
+
+package-lock.json
+session.json
+saas-session.json
+
+.DS_Store
+.env
+.vscode
+*.old
+*.sh
+*.swp
