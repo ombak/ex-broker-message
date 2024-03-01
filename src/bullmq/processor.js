@@ -6,11 +6,10 @@ const jobProcessor = async (job) => {
     await sleep(5000);
     
     //console.debug(job?.data);
-
-    // send email verification
-    //await this.verifyEmail(
-
-    //);
+    //...send email verification
+    await this.verifyEmail({ 
+        ...job.data._email
+    });
 
     await job.updateProgress(100);
     return 'DONE';
@@ -19,9 +18,10 @@ const jobProcessor = async (job) => {
 module.exports = jobProcessor;
 
 // send email verification
-exports.verifyEmail = async function(url='', token, uid) {
+exports.verifyEmail = async function(data) {
     try {
-        let _url = url + "/" + uid + "/execute-actions-email";
+        const { url, token, uuid } = data;
+        let _url = url + "/" + uuid + "/execute-actions-email";
         const _response = await fetch(_url, {
             method: "PUT",
             headers: {

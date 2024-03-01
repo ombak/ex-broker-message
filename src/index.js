@@ -4,6 +4,7 @@ DotEnv.config();
 const express = require('express');
 const path = require('path');
 const addJobToQueue = require('./bullmq/queue');
+const { json } = require('body-parser');
 
 const app = express();
 const PORT = 3002;
