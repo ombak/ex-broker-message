@@ -1,7 +1,7 @@
 {
-  "name": "bullmq01",
+  "name": "ex-broker-message",
   "version": "1.0.0",
-  "description": "Latihan bullmq and redis",
+  "description": "Example code how to use bullmq and redis",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
