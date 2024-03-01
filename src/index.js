@@ -20,7 +20,8 @@ app.get('/', async (req, res) => {
 })
 
 // send email verification
-app.post('/send-email', async (req, res) => { 
+app.post('/send-email', async (req, res) => {
+    let _email = {};
     const _body = req.body;
     const _kcUrlReg = process.env.KEYCLOAK_MEMBER_REG;
     const _kcUrlLogin = process.env.KEYCLOAK_MEMBER_LOGIN;
@@ -52,21 +53,19 @@ app.post('/send-email', async (req, res) => {
             "enabled": true
         }
     );
-
-    // if success
+    
+    // success?
     if (_registerMember) {
-        // get token from keycloak
         const _uuid = _registerMember.split("/").pop();
-        await this.verifyEmail(
-            _kcUrlReg,
-            _token.access_token,
-            _uuid
-        )
+        _email = {
+            url: _kcUrlReg,
+            token: _token.access_token,
+            uuid: _uuid
+        }
     }
 
-    const _data = { _jobName: 'sendEmail', _body };
+    const _data = { _jobName: 'sendEmail', _email };
     const _job = await addJobToQueue(_data);
-
     return res.status(201).json({ jobId: _job.id });
 });
 
@@ -111,25 +110,5 @@ exports.registerUsers = async function(url='', token, data={}) {
         return _response;
     } catch (err) {
         console.log('Error', err)
-    }
-}
-
-// send email verification
-exports.verifyEmail = async function(url='', token, uid) {
-    try {
-        let _url = url + "/" + uid + "/execute-actions-email";
-        const _response = await fetch(_url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        .then(res => res.status)
-        .then(data => { return data }) // return data to out from fetch
-        .catch(error => console.log(error));
-        return _response;
-    } catch (err) {
-        console.log('Error', err);
     }
 }
