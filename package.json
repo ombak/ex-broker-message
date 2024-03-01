@@ -9,7 +9,7 @@
     "start": "node ./src/index.js"
   },
   "author": "sw.saputra",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "bullmq": "^5.4.0",
     "csv-parse": "^5.5.4",
