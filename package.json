@@ -1,6 +1,7 @@
 {
   "name": "ex-broker-message",
   "version": "1.0.0",
+  "type": "module",
   "description": "Example code how to use bullmq and redis",
   "main": "src/index.js",
   "scripts": {
