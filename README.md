@@ -17,4 +17,4 @@ Run docker compose
 
 ## Sponsor
 
-![Static Badge](https://img.shields.io/badge/Whalez%20Digital%20Teknologi-blue?style=flat-square&link=https%3A%2F%2Fwhalezz.com)
+![Static Badge](https://img.shields.io/badge/Whalez%20Digital%20Teknologi-blue?style=for-the-badge)
