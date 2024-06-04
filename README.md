@@ -1,5 +1,5 @@
 # PILOT01
-Create broker message, to send email verification for member registrationa and login in keycloak.
+Create broker message, to send email verification for member registrationa and login to keycloak.
 
 ## Technology
 
