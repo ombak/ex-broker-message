@@ -1,5 +1,5 @@
 # PILOT01
-Create broker message, to send email verification for member registration.
+Create broker message, to send email verification for member registrationa and login in keycloak.
 
 ## Technology
 
@@ -16,4 +16,5 @@ Run docker compose
 ```
 
 ## Sponsor
-![Static Badge](https://img.shields.io/badge/Whalez%20Digital%20Teknologi-blue)
+
+![Static Badge](https://img.shields.io/badge/Whalez%20Digital%20Teknologi-blue?style=flat-square&link=https%3A%2F%2Fwhalezz.com)
