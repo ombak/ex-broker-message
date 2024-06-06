@@ -5,10 +5,10 @@ export default class Keycloak {
     // constructor
     constructor() {
         // apps
-        this.urlRegistration = process.env.KEYCLOAK_MEMBER_REG;
-        this.urlLogin = process.env.KEYCLOAK_MEMBER_LOGIN;
-        this.clientId = process.env.KEYCLOAK_MEMBER_CLIENT_ID;
-        this.clientSecret = process.env.KEYCLOAK_MEMBER_CLIENT_SECRET;
+        this.urlRegistration = process.env.KEYCLOAK_USER_REG;
+        this.urlLogin = process.env.KEYCLOAK_USER_LOGIN;
+        this.clientId = process.env.KEYCLOAK_USER_CLIENT_ID;
+        this.clientSecret = process.env.KEYCLOAK_USER_CLIENT_SECRET;
         this.grantTypeCredentials = "client_credentials";
         this.grantTypePassword = "password";
     }
