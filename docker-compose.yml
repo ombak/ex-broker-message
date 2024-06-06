@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services:
   web:
@@ -9,7 +9,7 @@ services:
       - ./:/var/www/app
       - /var/www/app/node_modules
     ports:
-      - ${SERVER_PORT}:3002
+      - ${DOCKER_SERVER_PORT}:${SERVER_PORT}
     env_file:
       - .env
     restart: always
@@ -19,7 +19,7 @@ services:
     image: redis:latest
     restart: always
     ports:
-      - ${REDIS_PORT}:6379
+      - ${DOCKER_REDIS_PORT}:${REDIS_PORT}
     volumes:
       - redis-data:/root/redis
     env_file:
