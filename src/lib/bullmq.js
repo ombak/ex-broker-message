@@ -1,6 +1,6 @@
 'use strict';
 
-import { Queue, Worker, FlowProducer } from 'bullmq';
+import { Queue, Worker, FlowProducer, QueueEvents } from 'bullmq';
 import { isEmpty } from '../utils/utils.js';
 
 
@@ -95,8 +95,8 @@ export default class BrokerMessage {
     }
 
     // create flow
-    async createFlow(data, processor) {
-        const { _nameRoot, _queueName, _data, _childrens } = data;
+    async createFlow(data) {
+        const { _nameRoot, _queueName, _data, _childrens, _workers } = data;
         const _myConnection = await this.#createConnection();
 
         const _fflow = new FlowProducer({
@@ -111,10 +111,21 @@ export default class BrokerMessage {
             children: _childrens
         })
 
-        if (! await isEmpty(_processFlow)) {
-            return await this.#createWorker(_queueName, processor)
-        }
+        // create worker
+        _workers.forEach(async item => {
+            await this.#createWorker(item.queueName, item.processor);
+        });
 
-        return {}
+        return _fflow;
+    }
+
+    // get return value
+    async getReturnValue(data) {
+        const { _queueName } = data;
+        const _myConnection = await this.#createConnection();
+
+        return new QueueEvents(_queueName, {
+            connection: _myConnection.CONNECTOR
+        });
     }
 }
